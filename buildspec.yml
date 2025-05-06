@@ -2,8 +2,7 @@ version: 0.2
 
 env:
   variables:
-    #This is used to connect frontend to backend which is beyond the scope for this MP during beta testing
-    REACT_APP_API_BASE_URL: "https://{beanstalk-backend}.elasticbeanstalk.com"
+    REACT_APP_API_BASE_URL: "https://my-backend-app-v7-env.eba-vffxtgtm.us-east-1.elasticbeanstalk.com"
 
 phases:
   install:
@@ -16,9 +15,10 @@ phases:
   build:
     commands:
       - echo Building React app...
-      - npm run build
+      - echo "REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL"
+      - REACT_APP_API_BASE_URL=$REACT_APP_API_BASE_URL npm run build
 
 artifacts:
   files:
-    - '**/*'
+    - "**/*"
   base-directory: build
